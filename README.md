@@ -70,4 +70,4 @@ Path too long exception
 
 If you are facing a path too long exception when building this example project, close Visual Studio and rename the repository to a shorter name before building the project.
 
-For more details, refer to the KB on [How to display more data in the tooltip in MAUI Chart (SfCircularChart)]().
+For more details, refer to the KB on [How to display more data in the tooltip in MAUI Chart (SfCircularChart)](https://support.syncfusion.com/kb/article/18806/how-to-display-more-data-in-the-tooltip-in-maui-chart-sfcircularchart).
