@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ChartTooltipTemplate.MainPage"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:model="clr-namespace:ChartTooltipTemplate">
+
+    <chart:SfCircularChart>
+
+        <chart:SfCircularChart.Resources>
+            <DataTemplate x:Key="tooltipTemplate">
+
+                <StackLayout Padding="10" Orientation="Vertical" Spacing="10">
+                    <!-- Category and Amount -->
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                        <Label Text="{Binding Item.Category}" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Start" FontAttributes="Bold" FontFamily="Helvetica" FontSize="16"/>
+                        <Label Text="{Binding Item.Amount, StringFormat=':  {0}$'}" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="End" FontAttributes="Bold" FontFamily="Helvetica" FontSize="16"/>
+                    </StackLayout>
+
+                    <!-- Separator -->
+                    <BoxView HeightRequest="1" BackgroundColor="#D3D3D3"/>
+
+                    <!-- Percentage -->
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" Spacing="10">
+                        <Label Text="Percentage" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="Start" FontAttributes="Bold" FontFamily="Helvetica" FontSize="14"/>
+                        <Label Text="{Binding Item.Percentage, StringFormat=':  {0:F2}%'}" TextColor="White" VerticalTextAlignment="Center" HorizontalOptions="End" FontAttributes="Bold" FontFamily="Helvetica" FontSize="14"/>
+                    </StackLayout>
+
+                </StackLayout>
+
+            </DataTemplate>
+        </chart:SfCircularChart.Resources>
+
+        <chart:SfCircularChart.Title>
+            <Label HorizontalOptions="Center" Text="Monthly Expenses Breakdown"/>
+        </chart:SfCircularChart.Title>
+
+        <chart:SfCircularChart.BindingContext>
+            <model:MonthlyExpensesViewModel/>
+        </chart:SfCircularChart.BindingContext>
+
+        <chart:SfCircularChart.Legend>
+            <chart:ChartLegend/>
+        </chart:SfCircularChart.Legend>
+
+        <chart:PieSeries ItemsSource="{Binding Data}"
+                         XBindingPath="Category" 
+                         YBindingPath="Amount"
+                         ShowDataLabels="True"
+                         EnableTooltip="True"
+                         LegendIcon="SeriesType"
+                         TooltipTemplate="{StaticResource tooltipTemplate}"/>
+    </chart:SfCircularChart>
+
+</ContentPage>
